@@ -39,9 +39,9 @@
     "path-scurry": "^1.9.2",
     "simple-concat": "^1.0.1",
     "simple-get": "^4.0.1",
-    "skia-canvas": "^2.0.2",
     "string-split-by": "^1.0.0",
     "wrappy": "^1.0.2",
-    "yallist": "^5.0.0"
+    "yallist": "^5.0.0",
+    "ytmdesktop-ts-companion": "^1.1.0"
   }
 }
