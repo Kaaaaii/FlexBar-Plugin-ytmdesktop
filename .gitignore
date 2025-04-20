@@ -4,3 +4,4 @@ logs
 .env
 package-lock.json
 com.energy.spotify_integration.plugin/backend
+com.energy.spotify_integration.plugin/config.json

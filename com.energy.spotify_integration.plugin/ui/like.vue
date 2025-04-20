@@ -4,7 +4,9 @@
       <v-col cols="12">
         <v-card elevation="2" class="rounded-lg">
           <v-card-item>
-            <v-card-title class="text-h6 font-weight-regular">Like Button Settings</v-card-title>
+            <v-card-title class="text-h6 font-weight-regular"
+              >Like Button Settings</v-card-title
+            >
             <v-card-subtitle>Customize appearance and behavior</v-card-subtitle>
           </v-card-item>
 
@@ -24,12 +26,21 @@
                       variant="outlined"
                     >
                       <template v-slot:prepend-inner>
-                        <div :style="{ backgroundColor: modelValue.data.likedColor, width: '20px', height: '20px', marginRight: '8px', borderRadius: '4px', border: '1px solid #ccc' }"></div>
+                        <div
+                          :style="{
+                            backgroundColor: modelValue.data.likedColor,
+                            width: '20px',
+                            height: '20px',
+                            marginRight: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ccc',
+                          }"
+                        ></div>
                       </template>
                     </v-text-field>
                   </template>
-                  <v-color-picker 
-                    v-model="modelValue.data.likedColor" 
+                  <v-color-picker
+                    v-model="modelValue.data.likedColor"
                     elevation="10"
                     :modes="['hex']"
                     mode="hex"
@@ -51,12 +62,21 @@
                       variant="outlined"
                     >
                       <template v-slot:prepend-inner>
-                        <div :style="{ backgroundColor: modelValue.data.unlikedColor, width: '20px', height: '20px', marginRight: '8px', borderRadius: '4px', border: '1px solid #ccc' }"></div>
+                        <div
+                          :style="{
+                            backgroundColor: modelValue.data.unlikedColor,
+                            width: '20px',
+                            height: '20px',
+                            marginRight: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ccc',
+                          }"
+                        ></div>
                       </template>
                     </v-text-field>
                   </template>
-                  <v-color-picker 
-                    v-model="modelValue.data.unlikedColor" 
+                  <v-color-picker
+                    v-model="modelValue.data.unlikedColor"
                     elevation="10"
                     :modes="['hex']"
                     mode="hex"
@@ -78,12 +98,21 @@
                       variant="outlined"
                     >
                       <template v-slot:prepend-inner>
-                        <div :style="{ backgroundColor: modelValue.data.likeBgColor, width: '20px', height: '20px', marginRight: '8px', borderRadius: '4px', border: '1px solid #ccc' }"></div>
+                        <div
+                          :style="{
+                            backgroundColor: modelValue.data.likeBgColor,
+                            width: '20px',
+                            height: '20px',
+                            marginRight: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ccc',
+                          }"
+                        ></div>
                       </template>
                     </v-text-field>
                   </template>
-                  <v-color-picker 
-                    v-model="modelValue.data.likeBgColor" 
+                  <v-color-picker
+                    v-model="modelValue.data.likeBgColor"
                     elevation="10"
                     :modes="['hex']"
                     mode="hex"
@@ -101,22 +130,22 @@
 <script>
 const DEFAULT_MODEL_VALUE = {
   data: {
-    likedColor: '#1ED760',    // Default Spotify green
-    unlikedColor: '#FFFFFF',  // Default white
-    likeBgColor: '#424242'    // Default background color
+    likedColor: "#ff0033", // Default Spotify green
+    unlikedColor: "#FFFFFF", // Default white
+    likeBgColor: "#424242", // Default background color
   },
-  title: 'Like'
+  title: "Like",
 };
 
 export default {
-  name: 'LikeButton',
+  name: "LikeButton",
   props: {
     modelValue: {
       type: Object,
-      required: true
+      required: true,
     },
   },
-  emits: ['update:modelValue'],
+  emits: ["update:modelValue"],
   data() {
     return {
       isInitialized: false,
@@ -126,18 +155,22 @@ export default {
     initializeModelValue() {
       if (!this.modelValue.data) this.modelValue.data = {};
       if (!this.modelValue.style) this.modelValue.style = {};
-      
-      this.modelValue.data = { ...DEFAULT_MODEL_VALUE.data, ...this.modelValue.data };
+
+      this.modelValue.data = {
+        ...DEFAULT_MODEL_VALUE.data,
+        ...this.modelValue.data,
+      };
       // We might not need style defaults here if they are handled by the plugin backend
-      // this.modelValue.style = { ...DEFAULT_MODEL_VALUE.style, ...this.modelValue.style }; 
-      this.modelValue.title = this.modelValue.title || DEFAULT_MODEL_VALUE.title;
-      
+      // this.modelValue.style = { ...DEFAULT_MODEL_VALUE.style, ...this.modelValue.style };
+      this.modelValue.title =
+        this.modelValue.title || DEFAULT_MODEL_VALUE.title;
+
       this.isInitialized = true;
     },
   },
   created() {
     this.initializeModelValue();
-  }
+  },
 };
 </script>
 
@@ -151,4 +184,4 @@ export default {
   font-weight: 500;
   letter-spacing: 0.08em;
 }
-</style> 
+</style>
