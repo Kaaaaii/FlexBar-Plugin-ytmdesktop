@@ -3,13 +3,13 @@
     "build": "rollup -c",
     "dev": "npm-run-all plugin:unlink plugin:link -p plugin:watch plugin:debug",
     "plugin:watch": "rollup -c -w --watch.onEnd=\"npm run plugin:restart\"",
-    "plugin:unlink": "flexcli plugin unlink --uuid com.energy.spotify_integration --silent",
-    "plugin:link": "flexcli plugin link --path com.energy.spotify_integration.plugin --uuid com.energy.spotify_integration --start false",
-    "plugin:restart": "flexcli plugin restart --uuid=com.energy.spotify_integration",
-    "plugin:debug": "flexcli plugin debug --uuid=com.energy.spotify_integration",
-    "plugin:validate": "flexcli plugin validate --path com.energy.spotify_integration.plugin",
-    "plugin:pack": "flexcli plugin pack --path com.energy.spotify_integration.plugin",
-    "plugin:install": "flexcli plugin install --path ./com.energy.spotify_integration.flexplugin --force"
+    "plugin:unlink": "flexcli plugin unlink --uuid com.energy.ytmdesktop --silent",
+    "plugin:link": "flexcli plugin link --path com.energy.ytmdesktop.plugin --uuid com.energy.ytmdesktop --start false",
+    "plugin:restart": "flexcli plugin restart --uuid=com.energy.ytmdesktop",
+    "plugin:debug": "flexcli plugin debug --uuid=com.energy.ytmdesktop",
+    "plugin:validate": "flexcli plugin validate --path com.energy.ytmdesktop.plugin",
+    "plugin:pack": "flexcli plugin pack --path com.energy.ytmdesktop.plugin",
+    "plugin:install": "flexcli plugin install --path ./com.energy.ytmdesktop.flexplugin --force"
   },
   "type": "commonjs",
   "devDependencies": {
@@ -39,6 +39,7 @@
     "path-scurry": "^1.9.2",
     "simple-concat": "^1.0.1",
     "simple-get": "^4.0.1",
+    "skia-canvas": "^2.0.2",
     "string-split-by": "^1.0.0",
     "wrappy": "^1.0.2",
     "yallist": "^5.0.0",

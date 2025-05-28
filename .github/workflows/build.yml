@@ -2,11 +2,11 @@ name: Build, Test and Release
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     tags:
       - "v*"
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
@@ -17,48 +17,48 @@ jobs:
         node-version: [20]
 
     steps:
-    - uses: actions/checkout@v3
-    
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-    
-    - name: Install dependencies
-      run: npm install --legacy-peer-deps
-      
-    - name: Install FlexCli
-      run: npm install -g @eniac/flexcli
-      
-    - name: Build plugin
-      run: npm run build
-      
-    - name: Pack plugin
-      run: npm run plugin:pack
-      
-    - name: Rename plugin for platform
-      shell: bash
-      run: |
-        if [[ $GITHUB_REF == refs/tags/* ]]; then
-          TAG=${GITHUB_REF#refs/tags/}
-        else
-          TAG=latest
-        fi
-        PLATFORM=${{ matrix.os }}
-        # Clean up platform name
-        case $PLATFORM in
-          "windows-latest") CLEAN_PLATFORM="windows" ;;
-          "macos-latest") CLEAN_PLATFORM="macos" ;;
-          "ubuntu-latest") CLEAN_PLATFORM="linux" ;;
-        esac
-        mv com.energy.spotify_integration.flexplugin "com.energy.spotify_integration-${CLEAN_PLATFORM}-${TAG}.flexplugin"
-      
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: plugin-${{ matrix.os }}
-        path: com.energy.spotify_integration-*.flexplugin
-        compression-level: 0
+      - uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Install FlexCli
+        run: npm install -g @eniac/flexcli
+
+      - name: Build plugin
+        run: npm run build
+
+      - name: Pack plugin
+        run: npm run plugin:pack
+
+      - name: Rename plugin for platform
+        shell: bash
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            TAG=${GITHUB_REF#refs/tags/}
+          else
+            TAG=latest
+          fi
+          PLATFORM=${{ matrix.os }}
+          # Clean up platform name
+          case $PLATFORM in
+            "windows-latest") CLEAN_PLATFORM="windows" ;;
+            "macos-latest") CLEAN_PLATFORM="macos" ;;
+            "ubuntu-latest") CLEAN_PLATFORM="linux" ;;
+          esac
+          mv com.energy.ytmdesktop.flexplugin "com.energy.ytmdesktop-${CLEAN_PLATFORM}-${TAG}.flexplugin"
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-${{ matrix.os }}
+          path: com.energy.ytmdesktop-*.flexplugin
+          compression-level: 0
 
   release:
     needs: build
@@ -69,21 +69,21 @@ jobs:
       packages: write
 
     steps:
-    - uses: actions/checkout@v3
-      with:
-        fetch-depth: 0
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
-    - name: Download all artifacts
-      uses: actions/download-artifact@v4
-      with:
-        path: ./artifacts
-        merge-multiple: true
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: ./artifacts
+          merge-multiple: true
 
-    - name: Create Release
-      uses: softprops/action-gh-release@v2
-      with:
-        files: |
-          artifacts/*.flexplugin
-        draft: false
-        prerelease: false
-        generate_release_notes: true 
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            artifacts/*.flexplugin
+          draft: false
+          prerelease: false
+          generate_release_notes: true

@@ -3,5 +3,5 @@ logs
 .vscode
 .env
 package-lock.json
-com.energy.spotify_integration.plugin/backend
-com.energy.spotify_integration.plugin/config.json
+com.energy.ytmdesktop.plugin/backend
+com.energy.ytmdesktop.plugin/config.json
